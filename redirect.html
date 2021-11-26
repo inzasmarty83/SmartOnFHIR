@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Epic SMART on FHIR</title>
+</head>
+<body style="font-family: 'arial';">
+	<h2 style="text-align: center;color: #666">Redirecting ...</h2>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
+	<script type="text/javascript">
+		
+		var client_id = "";
+		var url_string = window.location.href;
+		var url = new URL(url_string);
+		var code = url.searchParams.get("code");
+		var state = url.searchParams.get("state");
+
+		console.log("code: ",code);
+		console.log("state: ",state);
+
+		var authorizeEndpoint = "https://apporchard.epic.com/interconnect-ao85prd-oauth/oauth2/authorize";
+		var tokenEndpoint = "https://apporchard.epic.com/interconnect-ao85prd-oauth/oauth2/token";
+
+		/* ### Post the following parameters to Epic's OAuth token service ###
+		- grant_type = "authorization_code"
+		- code = the authorization code your web app received
+		- redirect_uri = redirect_url (defined in the above form)
+		- client_id = client_id (defined in the above form)
+		*/
+
+		$.ajax({
+            url: tokenEndpoint,
+            method: "POST",
+            dataType: "json",
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            data: {
+            	grant_type: "authorization_code",
+            	code: code,
+            	redirect_uri: url_string,
+            	client_id: client_id
+            },
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+            },
+            success: function (data) {
+                console.log('result: ',data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log('error: ',errorThrown);
+            }
+        });
+
+		
+	</script>
+</body>
+</html>
