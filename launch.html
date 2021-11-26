@@ -38,7 +38,6 @@
 		window.location.replace(authorizeEndpoint
 			+"?response_type=code"
 			+"&client_id="+client_id
-			+"&redirect_uri="+url_string.substring(0, url_string.indexOf("launch.html"))+"redirect.html"
 			+"&launch="+launch
 			+"&scope=patient/Patient.read launch online_access openid profile");
 
