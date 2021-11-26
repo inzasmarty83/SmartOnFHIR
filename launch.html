@@ -8,33 +8,40 @@
 	<h2 style="text-align: center;color: #666">Loading ...</h2>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
+
 	<script type="text/javascript">
-		var client_id = "1d4a6313-69cb-4a14-8bb4-080528daa91e";
-		var url_string = window.location.href;
-		var url = new URL(url_string);
-		var iss = url.searchParams.get("iss");
-		var launch = url.searchParams.get("launch");
-		var state = "8ca33248-a693-8b6b-5218-ea3e433c207c";
 
-		var authorizeEndpoint = "https://fhir.epic.com/interconnect-fhir-oauth/oauth2/authorize";
-		var tokenEndpoint = "https://fhir.epic.com/interconnect-fhir-oauth/oauth2/token";
+		FHIR.oauth2.authorize({
+        'client_id': '1d4a6313-69cb-4a14-8bb4-080528daa91e',
+        'scope':  'patient/Patient.read launch online_access openid profile'
+      });
+		<!-- var client_id = "1d4a6313-69cb-4a14-8bb4-080528daa91e"; -->
+		<!-- var url_string = window.location.href; -->
+		<!-- var url = new URL(url_string); -->
+		<!-- var iss = url.searchParams.get("iss"); -->
+		<!-- var launch = url.searchParams.get("launch"); -->
+		<!-- var state = "8ca33248-a693-8b6b-5218-ea3e433c207c"; -->
 
-		/* ### Redirect the browser to Epic authorize endpoint to authorize the Client ID ###
-		- response_type = "code"
-		- client_id = client_id (defined above)
-		- redirect_uri = redirect_url (defined in the above form)
-		- launch = the launch token (as passed to your web app's launch URL)
-		- state = <an opaque value used by the client to maintain state between the request and callback.>
-		- scope = "launch" (this is necessary to indicate the app is launching from the EMR context to enable single sign-on)
-		*/
+		<!-- var authorizeEndpoint = "https://fhir.epic.com/interconnect-fhir-oauth/oauth2/authorize"; -->
+		<!-- var tokenEndpoint = "https://fhir.epic.com/interconnect-fhir-oauth/oauth2/token"; -->
 
-		window.location.replace(authorizeEndpoint
-			+"?response_type=code"
-			+"&client_id="+client_id
-			+"&redirect_uri="+url_string.substring(0, url_string.indexOf("launch.html"))+"redirect.html"
-			+"&launch="+launch
-			+"&state="+state
-			+"&scope=patient/Patient.read launch online_access openid profile");
+		<!-- /* ### Redirect the browser to Epic authorize endpoint to authorize the Client ID ### -->
+		<!-- - response_type = "code" -->
+		<!-- - client_id = client_id (defined above) -->
+		<!-- - redirect_uri = redirect_url (defined in the above form) -->
+		<!-- - launch = the launch token (as passed to your web app's launch URL) -->
+		<!-- - state = <an opaque value used by the client to maintain state between the request and callback.> -->
+		<!-- - scope = "launch" (this is necessary to indicate the app is launching from the EMR context to enable single sign-on) -->
+		<!-- */ -->
+
+		<!-- window.location.replace(authorizeEndpoint -->
+			<!-- +"?response_type=code" -->
+			<!-- +"&client_id="+client_id -->
+			<!-- +"&redirect_uri="+url_string.substring(0, url_string.indexOf("launch.html"))+"redirect.html" -->
+			<!-- +"&launch="+launch -->
+			<!-- +"&state="+state -->
+			<!-- +"&scope=patient/Patient.read launch online_access openid profile"); -->
 
 	</script>
 </body>
