@@ -16,12 +16,12 @@
         <!-- 'scope':  'patient/Patient.read launch online_access openid profile' -->
       <!-- }); -->
 
-		var client_id = "99cc7540-66fe-4531-ab33-c53788660024";
+		var client_id = "0a598e2e-14ab-4049-b9c4-2f6e06db4632";
 		var url_string = window.location.href;
 		var url = new URL(url_string);
 		var iss = url.searchParams.get("iss");
 		var launch = url.searchParams.get("launch");
-		var state = "8ca33248-a693-8b6b-5218";
+		var state = "8ca33248-a693-8b6b";
 
 		var authorizeEndpoint = "https://fhir.epic.com/interconnect-fhir-oauth/oauth2/authorize";
 		var tokenEndpoint = "https://fhir.epic.com/interconnect-fhir-oauth/oauth2/token";
