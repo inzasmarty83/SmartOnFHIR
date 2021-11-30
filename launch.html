@@ -16,7 +16,7 @@
         <!-- 'scope':  'patient/Patient.read launch online_access openid profile' -->
       <!-- }); -->
 
-		var client_id = "0a598e2e-14ab-4049-b9c4-2f6e06db4632";
+		var client_id = "1d4a6313-69cb-4a14-8bb4-080528daa91e";
 		var url_string = window.location.href;
 		var url = new URL(url_string);
 		var iss = url.searchParams.get("iss");
@@ -41,7 +41,7 @@
 			+"&redirect_uri="+url_string.substring(0, url_string.indexOf("launch.html"))+"redirect.html"
 			+"&launch="+launch
 			+"&state="+state
-			+"&scope=launch");
+			+"&scope=patient/Patient.read launch online_access openid profile audience");
 
 	</script>
 </body>
